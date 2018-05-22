@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: cont2
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: rafael
+Implementation-Vendor-Id: com.cortex
+Build-Jdk: 1.8.0_172
+Implementation-URL: http://maven.apache.org/cont2
+Created-By: Maven Integration for Eclipse
+
