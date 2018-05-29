@@ -1,6 +1,4 @@
 open module com.cortex.main {
-	requires java.xml.ws.annotation;
-    requires java.instrument;
     requires java.sql;
 
 	requires spring.context;
