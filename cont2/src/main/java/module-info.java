@@ -1,3 +1,10 @@
 module com.cortex.cont2 {
-	exports com.cortex.cont2.Controller2;
+    requires spring.beans;
+    requires spring.core;
+    requires spring.web;
+    requires spring.webmvc;
+    requires spring.boot;
+    requires spring.boot.autoconfigure;
+    
+	exports com.cortex.cont2;
 }

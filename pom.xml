@@ -17,13 +17,16 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
+	
   <properties>
+  	<java.version>10</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
 	<modules>
 		<module>cont1</module>
 		<module>cont2</module>
+		<module>MessageBroker</module>
 	</modules>
 
 </project>
