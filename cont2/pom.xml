@@ -30,6 +30,23 @@
 			<artifactId>spring-context</artifactId>
 			<version>5.1.0.BUILD-SNAPSHOT</version>
 		</dependency>
+		
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-broker</artifactId>
+        </dependency>
+        
+        
+		<dependency>
+			<groupId>com.cortex</groupId>
+			<artifactId>MessageBroker</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>

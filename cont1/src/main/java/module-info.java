@@ -11,6 +11,9 @@ open module com.cortex.main {
 	requires spring.boot.autoconfigure;
 
 	requires com.cortex.cont2;
+	requires com.cortex.messagebroker;
 
+	requires geronimo.j2ee.management;
+	
 	exports com.cortex.main;
 }

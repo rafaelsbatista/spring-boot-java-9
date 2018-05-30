@@ -11,6 +11,35 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>jms</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<!-- https://jira.spring.io/browse/SPR-16776 -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.1.0.BUILD-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>2.0.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -26,36 +55,44 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
 	</dependencies>
 	<profiles>
-	<profile>
-		<id>jdk10</id>
-		<activation>
-			<activeByDefault>true</activeByDefault>
-		</activation>
-		<properties>
-			<java.version>10</java.version>
-		</properties>
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
-					<configuration>
-						<release>${java.version}</release>
-					</configuration>
-					<dependencies>
-						<!-- JDK 10 fix -->
-						<dependency>
-							<groupId>org.ow2.asm</groupId>
-							<artifactId>asm</artifactId>
-							<version>6.1.1</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-			</plugins>
-		</build>
-	</profile>
+		<profile>
+			<id>jdk10</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<java.version>10</java.version>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.7.0</version>
+						<configuration>
+							<release>${java.version}</release>
+						</configuration>
+						<dependencies>
+							<!-- JDK 10 fix -->
+							<dependency>
+								<groupId>org.ow2.asm</groupId>
+								<artifactId>asm</artifactId>
+								<version>6.1.1</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 </project>
