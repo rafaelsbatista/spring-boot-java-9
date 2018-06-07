@@ -1,71 +1,51 @@
-<?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.cortex</groupId>
 		<artifactId>connector</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<artifactId>message-broker</artifactId>
 	<groupId>com.cortex</groupId>
-	<artifactId>cont1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>cont1</name>
-	<url>http://maven.apache.org</url>
-	<properties>
-		<java.version>10</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<!-- <exclusion>
-					<groupId>javax.annotation</groupId>
-					<artifactId>javax.annotation-api</artifactId>
-				 </exclusion>-->
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.jboss.spec.javax.annotation</groupId>
-					<artifactId>jboss-annotations-api_1.2_spec</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.mortbay.jasper</groupId>
-					<artifactId>apache-el</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.cortex</groupId>
-			<artifactId>cont2</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.cortex</groupId>
-			<artifactId>message-broker</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>		
-		<dependency>
 			<!-- https://jira.spring.io/browse/SPR-16776 -->
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>5.1.0.BUILD-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>2.0.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>2.1.6.RELEASE</version>
 		</dependency>
 	</dependencies>
 	<profiles>
@@ -126,6 +106,7 @@
 							</execution>
 						</executions>
 					</plugin>
+
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
@@ -148,18 +129,27 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-install-plugin</artifactId>
+						<version>2.3.1</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>install-file</goal>
+								</goals>
+								<phase>install</phase>
+								<configuration>
+									<file>${project.build.directory}/modules/${project.build.finalName}.${project.packaging}</file>
+									<generatePom>false</generatePom>
+									<pomFile>pom.xml</pomFile>
+									<version>${project.build.version}</version>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
-	<repositories>
-		<repository>
-			<id>spring-snapshot</id>
-			<name>Spring Snapshot Repository</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 </project>

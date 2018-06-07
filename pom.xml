@@ -26,7 +26,90 @@
 	<modules>
 		<module>cont1</module>
 		<module>cont2</module>
-		<module>MessageBroker</module>
+		<module>message-broker</module>
 	</modules>
-
+<profiles>
+		<profile>
+			<id>jdk10</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<java.version>10</java.version>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.7.0</version>
+						<configuration>
+							<release>${java.version}</release>
+						</configuration>
+						<dependencies>
+							<!-- JDK 10 fix -->
+							<dependency>
+								<groupId>org.ow2.asm</groupId>
+								<artifactId>asm</artifactId>
+								<version>6.1.1</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>3.0.2</version>
+						<configuration>
+							<outputDirectory>${project.build.directory}/modules</outputDirectory>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<jvmArguments>--add-modules java.xml.bind</jvmArguments>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>build-info</goal>
+								</goals>
+								<configuration>
+									<additionalProperties>
+										<encoding.source>${project.build.sourceEncoding}
+										</encoding.source>
+										<encoding.reporting>${project.reporting.outputEncoding}
+										</encoding.reporting>
+										<java.source>${java.version}</java.source>
+										<java.target>${java.version}</java.target>
+									</additionalProperties>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>3.1.0</version>
+						<executions>
+							<execution>
+								<id>copy-dependencies</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/modules
+									</outputDirectory>
+									<includeScope>runtime</includeScope>
+									<excludeArtifactIds>
+										jboss-transaction-api_1.2_spec
+									</excludeArtifactIds>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
