@@ -15,7 +15,7 @@ public class Controller1 {
 	// jmsTemplate.convertAndSend("mailbox", new Email("info@example.com"
     static String lastValue = "";
     
-    @KafkaListener(id = "foo", topics = "annotated1")
+    @KafkaListener(id = "foo", topics = "topico")
     public void listen1(String foo) {
         lastValue = foo;
     }

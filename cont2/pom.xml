@@ -8,10 +8,11 @@
 		<groupId>com.cortex</groupId>
 		<artifactId>connector</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>.</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<groupId>com.cortex</groupId>
 	<artifactId>cont2</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>cont2</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -68,7 +69,8 @@
 						<configuration>
 							<release>${java.version}</release>
 							<compilerArgs>
-								<arg>-verbose</arg>
+								<arg>--module-path</arg>
+								<arg>${project.build.directory}/../../message-broker/target/modules</arg>
 							</compilerArgs>
 						</configuration>
 						<dependencies>
@@ -156,14 +158,4 @@
 			</build>
 		</profile>
 	</profiles>
-	<repositories>
-		<repository>
-			<id>spring-snapshot</id>
-			<name>Spring Snapshot Repository</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 </project>

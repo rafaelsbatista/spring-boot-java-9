@@ -8,6 +8,7 @@
 		<groupId>com.cortex</groupId>
 		<artifactId>connector</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<groupId>com.cortex</groupId>
 	<artifactId>cont1</artifactId>
@@ -20,13 +21,21 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>com.cortex</groupId>
+			<artifactId>cont2</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cortex</groupId>
+			<artifactId>message-broker</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
-				<!-- <exclusion>
-					<groupId>javax.annotation</groupId>
-					<artifactId>javax.annotation-api</artifactId>
-				 </exclusion>-->
+				<!-- <exclusion> <groupId>javax.annotation</groupId> <artifactId>javax.annotation-api</artifactId> 
+					</exclusion> -->
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -52,16 +61,6 @@
 			<artifactId>spring-beans</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.cortex</groupId>
-			<artifactId>cont2</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.cortex</groupId>
-			<artifactId>message-broker</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>		
-		<dependency>
 			<!-- https://jira.spring.io/browse/SPR-16776 -->
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -85,6 +84,10 @@
 						<version>3.7.0</version>
 						<configuration>
 							<release>${java.version}</release>
+							<compilerArgs>
+								<arg>--module-path</arg>
+								<arg>${project.build.directory}/../../message-broker/target/modules:${project.build.directory}/../../cont2/target/modules</arg>
+							</compilerArgs>
 						</configuration>
 						<dependencies>
 							<!-- JDK 10 fix -->
