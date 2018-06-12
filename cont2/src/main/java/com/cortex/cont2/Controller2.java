@@ -12,7 +12,7 @@ public class Controller2 {
     
     @GetMapping(value = "/val2")
     public String val2() {
-        template.send("topico", new Integer(2), "valor");
-        return "2";
+//        template.send("topico", new Integer(2), "valor");
+        return "2 rafa";
     }
 }

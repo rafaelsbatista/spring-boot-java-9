@@ -22,6 +22,6 @@ public class Controller1 {
 	@GetMapping(value = "/val1")
 	public String vai() {
 		JacksonMap aa = new JacksonMap();
-		return "1 " + lastValue;
+		return "1 rafa" + lastValue;
 	}
 }
