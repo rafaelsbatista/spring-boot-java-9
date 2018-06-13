@@ -1,7 +1,7 @@
 open module com.cortex.messagebroker {
 	requires com.fasterxml.jackson.core;
 	requires com.fasterxml.jackson.databind;
-	requires jackson.annotations;
+	requires com.fasterxml.jackson.annotation;
 	
     requires spring.beans;
 	requires spring.context;

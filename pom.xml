@@ -9,13 +9,6 @@
 
   <name>connector</name>
   <url>http://maven.apache.org</url>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
 	
 	
   <properties>
@@ -61,30 +54,6 @@
 						<configuration>
 							<outputDirectory>${project.build.directory}/modules</outputDirectory>
 						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-						<configuration>
-							<jvmArguments>--add-modules java.xml.bind</jvmArguments>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>build-info</goal>
-								</goals>
-								<configuration>
-									<additionalProperties>
-										<encoding.source>${project.build.sourceEncoding}
-										</encoding.source>
-										<encoding.reporting>${project.reporting.outputEncoding}
-										</encoding.reporting>
-										<java.source>${java.version}</java.source>
-										<java.target>${java.version}</java.target>
-									</additionalProperties>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
